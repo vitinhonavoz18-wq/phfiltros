@@ -7,6 +7,8 @@ import type { NextConfig } from "next";
  */
 const nextConfig: NextConfig = {
   output: "export",
+  // Momento do build: garante que servidor e navegador escolham a mesma campanha.
+  env: { NEXT_PUBLIC_BUILD_TIME: String(Date.now()) },
   poweredByHeader: false,
   // As imagens já são WebP otimizadas na pasta public/brand.
   images: { unoptimized: true },

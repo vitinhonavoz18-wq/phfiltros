@@ -6,6 +6,10 @@ import { Logo } from "./Logo";
 import { navItems } from "./nav";
 import { Icon, WhatsAppGlyph } from "@/components/ui/Icon";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { PromoBar } from "@/components/campaign/PromoBar";
+import { getBuildCampaign } from "@/config/campaigns";
+
+const campaign = getBuildCampaign();
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,6 +38,7 @@ export function Header() {
       <a href="#conteudo" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-ink">
         Pular para o conteúdo
       </a>
+      {campaign && <PromoBar campaign={campaign} />}
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-8">
         <Logo priority />
 
@@ -52,7 +57,8 @@ export function Header() {
         <div className="flex items-center gap-2">
           <WhatsAppLink location="header" className="btn btn-primary hidden min-h-11 px-5 text-sm md:inline-flex">
             <WhatsAppGlyph className="size-4" />
-            Solicitar orçamento
+            <span className="cmp-off">Solicitar orçamento</span>
+            <span className="cmp-on">Quero 30% OFF</span>
           </WhatsAppLink>
           <button
             type="button"
@@ -68,7 +74,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div id="menu-mobile" className="h-[calc(100svh-72px)] overflow-y-auto bg-abyss px-5 pb-10 pt-6 lg:hidden">
+        <div id="menu-mobile" className="h-[calc(100svh-72px-var(--promo-h))] overflow-y-auto bg-abyss px-5 pb-10 pt-6 lg:hidden">
           <nav aria-label="Menu móvel">
             <ul className="divide-y divide-white/[.07] border-y border-white/[.07]">
               {navItems.map((item, i) => (

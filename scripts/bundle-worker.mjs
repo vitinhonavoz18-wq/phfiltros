@@ -19,7 +19,11 @@ const TYPES = {
 };
 
 const files = [];
-const walk = (d) => readdirSync(d).forEach((f) => { const p = join(d, f); statSync(p).isDirectory() ? walk(p) : files.push(p); });
+const walk = (d) => readdirSync(d).forEach((f) => {
+  const p = join(d, f);
+  if (statSync(p).isDirectory()) walk(p);
+  else files.push(p);
+});
 walk(OUT);
 
 const entries = [];

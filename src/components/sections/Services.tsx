@@ -38,6 +38,7 @@ export function Services() {
                   location="service_row"
                   label={s.name}
                   message={s.whatsappMessage}
+                  interest={s.name}
                   className="inline-flex items-center gap-2 justify-self-start rounded-full border border-white/15 px-5 py-3 text-sm font-semibold transition-all duration-500 hover:border-crystal hover:bg-crystal hover:text-abyss md:justify-self-end"
                 >
                   Solicitar

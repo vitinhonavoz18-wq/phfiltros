@@ -6,14 +6,14 @@ import { site } from "@/config/site";
 
 export function Hero() {
   return (
-    <section className="grain relative isolate overflow-hidden bg-abyss pt-[72px] text-white" aria-labelledby="hero-title">
+    <section className="grain relative isolate overflow-hidden bg-abyss pt-[calc(72px+var(--promo-h))] text-white" aria-labelledby="hero-title">
       {/* Fundo cinematográfico */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(120%_80%_at_75%_30%,#0a3a6e_0%,#041426_42%,#020810_75%)]" />
       <div aria-hidden className="absolute -left-40 top-1/3 -z-10 size-[520px] rounded-full bg-brand/20 blur-[120px]" />
       <WaterCanvas className="-z-10 opacity-80 mix-blend-screen" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-abyss" />
 
-      <div className="mx-auto grid min-h-[calc(100svh-72px)] max-w-7xl items-center gap-6 px-5 pb-16 pt-10 md:px-8 lg:grid-cols-[1.15fr_.85fr] lg:gap-10 lg:pb-24">
+      <div className="mx-auto grid min-h-[calc(100svh-72px-var(--promo-h))] max-w-7xl items-center gap-6 px-5 pb-16 pt-10 md:px-8 lg:grid-cols-[1.15fr_.85fr] lg:gap-10 lg:pb-24">
         <div className="relative z-10 max-w-2xl">
           <p className="reveal-fade inline-flex items-center gap-3 rounded-full border border-crystal/25 bg-crystal/[.06] py-1.5 pl-1.5 pr-4 backdrop-blur-sm" style={{ animationDelay: "80ms" }}>
             <span className="grid size-7 place-items-center rounded-full bg-gradient-to-br from-crystal to-brand">

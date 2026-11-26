@@ -11,6 +11,8 @@ import { PendingNotice } from "@/components/ui/PendingNotice";
 import { Tracking } from "@/components/tracking/Tracking";
 import { CookieConsent } from "@/components/tracking/CookieConsent";
 import { consentDefaultsScript } from "@/components/tracking/consent";
+import { campaignBootScript } from "@/config/campaigns";
+import { CampaignClock } from "@/components/campaign/CampaignClock";
 
 // Fontes hospedadas no próprio site (Sora e Manrope, licença OFL): sem dependência do Google no build ou no acesso.
 const sora = localFont({ src: "../fonts/sora-latin-wght-normal.woff2", variable: "--font-sora", display: "swap", weight: "100 800" });
@@ -51,8 +53,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR" className={`${sora.variable} ${manrope.variable}`}>
+    <html lang="pt-BR" className={`${sora.variable} ${manrope.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: campaignBootScript }} />
         <script dangerouslySetInnerHTML={{ __html: consentDefaultsScript }} />
         <JsonLd data={localBusinessJsonLd()} />
       </head>
@@ -64,6 +67,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <CookieConsent />
         <PendingNotice />
         <RevealObserver />
+        <CampaignClock />
         <Tracking />
       </body>
     </html>

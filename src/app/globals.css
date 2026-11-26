@@ -172,7 +172,7 @@ body {
 }
 
 section[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: calc(80px + var(--promo-h, 0px));
 }
 
 /* ---------- Typography helpers ---------- */
@@ -402,5 +402,165 @@ details[open] .faq-body {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ============================================================
+   CAMPANHAS PROMOCIONAIS (ativadas por html[data-campaign])
+   ============================================================ */
+:root {
+  --promo-h: 0px;
+  --cmp-accent: #00c8f5;
+  --cmp-accent-soft: #007bdb;
+  --cmp-surface: #050608;
+  --cmp-surface-2: #101318;
+}
+html[data-campaign] {
+  --promo-h: 36px;
+}
+html:not([data-campaign]) .cmp-on {
+  display: none !important;
+}
+html[data-campaign] .cmp-off {
+  display: none !important;
+}
+
+@keyframes sheen-x {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes seal-tilt {
+  0%,
+  100% {
+    transform: rotateX(14deg) rotateY(-18deg) translateZ(0);
+  }
+  50% {
+    transform: rotateX(-8deg) rotateY(16deg) translateZ(0) translateY(-8px);
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.promo-bar {
+  background: linear-gradient(90deg, #000 0%, #0b1a2c 50%, #000 100%);
+  border-bottom: 1px solid rgb(0 200 245 / 0.18);
+}
+.promo-bar-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 35%, rgb(0 200 245 / 0.18) 50%, transparent 65%);
+  animation: sheen-x 6s linear infinite;
+  pointer-events: none;
+}
+
+.bf-chrome {
+  display: inline-block;
+  background: linear-gradient(175deg, #ffffff 0%, #e8f6ff 38%, #8fdcff 58%, #00c8f5 72%, #0a6fd0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bf-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(70% 60% at 60% 40%, #000 30%, transparent 80%);
+}
+
+.seal-3d {
+  perspective: 700px;
+}
+.seal-face {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 25%, rgb(255 255 255 / 0.28), transparent 45%),
+    radial-gradient(circle at 50% 50%, #0d1a2b 0%, #050608 70%);
+  border: 1px solid rgb(0 200 245 / 0.45);
+  box-shadow:
+    0 30px 60px -20px rgb(0 0 0 / 0.9),
+    0 0 0 6px rgb(0 200 245 / 0.06),
+    0 0 50px -6px rgb(0 200 245 / 0.45),
+    inset 0 2px 0 rgb(255 255 255 / 0.18),
+    inset 0 -10px 30px rgb(0 123 219 / 0.25);
+  transform-style: preserve-3d;
+  animation: seal-tilt 7s ease-in-out infinite;
+}
+.seal-ring {
+  animation: spin-slow 22s linear infinite;
+}
+
+.ticker-track {
+  animation: ticker 38s linear infinite;
+}
+
+@layer components {
+  .btn-bf {
+    color: #00131f;
+    background: linear-gradient(135deg, #ffffff 0%, #bfeeff 45%, var(--cmp-accent) 100%);
+    box-shadow:
+      0 14px 40px -12px rgb(0 200 245 / 0.75),
+      inset 0 1px 0 rgb(255 255 255 / 0.9);
+  }
+  .btn-bf::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.7) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.8s var(--ease-water);
+  }
+  .btn-bf:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 20px 50px -12px rgb(0 200 245 / 0.9),
+      inset 0 1px 0 #fff;
+  }
+  .btn-bf:hover::after {
+    transform: translateX(120%);
+  }
+  .tag-off {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: linear-gradient(135deg, #000, #10263f);
+    box-shadow:
+      inset 0 0 0 1px rgb(0 200 245 / 0.5),
+      0 6px 16px -8px rgb(0 200 245 / 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal-face,
+  .seal-ring,
+  .ticker-track,
+  .promo-bar-sheen {
+    animation: none !important;
   }
 }

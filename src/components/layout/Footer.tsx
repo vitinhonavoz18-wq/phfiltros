@@ -7,6 +7,9 @@ import { Icon, WhatsAppGlyph } from "@/components/ui/Icon";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { TrackedLink } from "@/components/ui/TrackedLink";
 import { CookiePreferencesButton } from "@/components/tracking/CookieConsent";
+import { getBuildCampaign } from "@/config/campaigns";
+
+const campaign = getBuildCampaign();
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -113,6 +116,12 @@ export function Footer() {
           </div>
         </div>
 
+        {campaign && (
+          <p className="cmp-on mt-14 rounded-2xl border border-white/[.08] bg-white/[.03] p-5 text-sm leading-relaxed text-white/70">
+            <span className="tag-off mr-2 align-middle">Black Friday</span>
+            {campaign.texts.finePrint}
+          </p>
+        )}
         <div className="mt-16 flex flex-col gap-5 border-t border-white/[.07] pt-8 text-sm text-white/65 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {site.legalName}

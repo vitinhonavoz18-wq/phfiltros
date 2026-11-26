@@ -4,6 +4,9 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Icon, WhatsAppGlyph } from "@/components/ui/Icon";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { track } from "@/lib/analytics";
+import { getBuildCampaign } from "@/config/campaigns";
+
+const campaign = getBuildCampaign();
 
 const places = [
   { value: "Minha casa", icon: "home" },
@@ -81,6 +84,8 @@ export function QuoteWizard() {
   ]
     .filter((l, i, arr) => !(l === "" && arr[i - 1] === ""))
     .join("\n");
+  // Durante a campanha, a mensagem abre com o texto promocional e mantém os dados do orçamento.
+  const campaignMessage = campaign ? message.replace("Olá! Vim pelo site da PH Filtros e gostaria de um orçamento.", campaign.whatsappMessage) : undefined;
 
   const reset = () => {
     setStep(0);
@@ -189,6 +194,7 @@ export function QuoteWizard() {
                   location="quote_wizard"
                   label={`${place} | ${need}`}
                   message={message}
+                  campaignMessage={campaignMessage}
                   onClick={() => track("quote_complete", { place, need, city: city.trim() })}
                   className="btn btn-wa mt-6 min-h-14 w-full text-base"
                 >

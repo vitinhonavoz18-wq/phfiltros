@@ -240,7 +240,7 @@ export function FiltrationExperience() {
       </div>
 
       <div ref={wrapRef} className={reduced ? "" : "relative h-[320vh]"}>
-        <div className={reduced ? "py-16" : "sticky top-0 flex h-[100svh] items-center pt-[72px]"}>
+        <div className={reduced ? "py-16" : "sticky top-0 flex h-[100svh] items-center pt-[calc(72px+var(--promo-h))]"}>
           <div className="mx-auto grid w-full max-w-7xl items-center gap-4 px-5 md:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
             {/* Etapas */}
             <ol className="order-2 lg:order-1" aria-label="Etapas da filtragem">

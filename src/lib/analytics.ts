@@ -4,6 +4,7 @@
  * O Meta Pixel só recebe eventos se o visitante autorizou cookies de marketing.
  */
 import { getAttribution } from "./utm";
+import { liveCampaign } from "./campaign-client";
 
 export type ConversionEvent =
   | "whatsapp_click"
@@ -42,6 +43,7 @@ export function track(event: ConversionEvent, params: Params = {}) {
     utm_medium: a.utm_medium,
     utm_campaign: a.utm_campaign,
     page_path: window.location.pathname,
+    campaign: liveCampaign()?.id,
   };
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);

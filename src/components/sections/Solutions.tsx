@@ -7,6 +7,10 @@ import { Icon, WhatsAppGlyph } from "@/components/ui/Icon";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { SolutionArt } from "@/components/visuals/SolutionArt";
 import { track } from "@/lib/analytics";
+import { getBuildCampaign } from "@/config/campaigns";
+import { PromoSeal } from "@/components/campaign/PromoSeal";
+
+const campaign = getBuildCampaign();
 
 export function Solutions() {
   const [active, setActive] = useState(0);
@@ -31,7 +35,13 @@ export function Solutions() {
             </h2>
           </div>
           <p data-reveal style={{ ["--reveal-delay" as string]: "120ms" }} className="max-w-md text-lg leading-relaxed text-slate lg:justify-self-end">
-            Encontre a tecnologia de filtragem adequada para transformar a qualidade da água no seu dia a dia.
+            <span className="cmp-off">Encontre a tecnologia de filtragem adequada para transformar a qualidade da água no seu dia a dia.</span>
+            {campaign && (
+              <span className="cmp-on">
+                <strong className="font-semibold text-ink">Black Friday: {campaign.discountPercent}% OFF em todos os itens.</strong> Mais qualidade. Mais economia. Menos
+                gastos.
+              </span>
+            )}
           </p>
         </div>
 
@@ -67,7 +77,10 @@ export function Solutions() {
                     <Icon name={item.icon} className="size-5" />
                   </span>
                   <span className="min-w-0">
-                    <span className="block whitespace-nowrap font-display text-[0.98rem] font-semibold tracking-tight text-ink lg:text-lg">{item.name}</span>
+                    <span className="flex items-center gap-2 whitespace-nowrap font-display text-[0.98rem] font-semibold tracking-tight text-ink lg:text-lg">
+                      {item.name}
+                      {campaign && <span className="cmp-on tag-off">-{campaign.discountPercent}%</span>}
+                    </span>
                     <span className="hidden text-sm text-slate lg:block">{item.tagline}</span>
                   </span>
                   <Icon name="arrow" className={`ml-auto hidden size-5 transition-all duration-500 lg:block ${selected ? "translate-x-0 text-brand opacity-100" : "-translate-x-2 opacity-0"}`} />
@@ -85,7 +98,14 @@ export function Solutions() {
             className="scroll-mt-24 overflow-hidden rounded-[28px] bg-deep text-white shadow-[0_40px_90px_-40px_rgba(4,20,38,.6)]"
           >
             <div key={s.slug} className="reveal-fade">
-              <SolutionArt solution={s} className="aspect-[16/9] w-full lg:aspect-[16/8]" />
+              <div className="relative">
+                <SolutionArt solution={s} className="aspect-[16/9] w-full lg:aspect-[16/8]" />
+                {campaign && (
+                  <div className="cmp-on absolute left-5 top-5 md:left-8 md:top-8">
+                    <PromoSeal percent={campaign.discountPercent} size="sm" />
+                  </div>
+                )}
+              </div>
               <div className="p-7 md:p-10">
                 <div className="flex flex-wrap gap-2">
                   {s.idealFor.map((tag) => (
@@ -107,9 +127,10 @@ export function Solutions() {
                   ))}
                 </ul>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <WhatsAppLink location="solution_panel" label={s.name} message={s.whatsappMessage} className="btn btn-primary">
+                  <WhatsAppLink location="solution_panel" label={s.name} message={s.whatsappMessage} interest={s.name} className="btn btn-primary">
                     <WhatsAppGlyph className="size-5" />
-                    Consultar pelo WhatsApp
+                    <span className="cmp-off">Consultar pelo WhatsApp</span>
+                    {campaign && <span className="cmp-on">{campaign.texts.productCta}</span>}
                   </WhatsAppLink>
                   <Link href={`/solucoes/${s.slug}`} className="btn btn-ghost-dark">
                     Ver detalhes

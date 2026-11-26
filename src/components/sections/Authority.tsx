@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { site } from "@/config/site";
+import { getBuildCampaign } from "@/config/campaigns";
+
+const campaign = getBuildCampaign();
 
 export function Authority() {
   return (
@@ -24,6 +27,12 @@ export function Authority() {
           <p className="mt-6 max-w-sm border-l-2 border-crystal pl-5 text-lg font-medium leading-snug text-ink">
             anos dedicados à filtragem de água em Salvador e região.
           </p>
+          {campaign && (
+            <p className="cmp-on mt-6 inline-flex items-center gap-3 rounded-2xl bg-[var(--cmp-surface)] px-5 py-3.5 text-[0.95rem] font-semibold text-white shadow-[0_20px_40px_-20px_rgba(0,0,0,.6)]">
+              <span className="tag-off">{campaign.discountPercent}% OFF</span>
+              {campaign.texts.authority}
+            </p>
+          )}
         </div>
 
         <div>

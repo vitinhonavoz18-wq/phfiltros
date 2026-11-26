@@ -10,6 +10,10 @@ import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { ViewTracker } from "@/components/tracking/ViewTracker";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { JsonLd } from "@/lib/seo";
+import { getBuildCampaign } from "@/config/campaigns";
+import { PromoSeal } from "@/components/campaign/PromoSeal";
+
+const campaign = getBuildCampaign();
 
 export function generateStaticParams() {
   return solutions.map((s) => ({ slug: s.slug }));
@@ -98,13 +102,26 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
 
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <div className="overflow-hidden rounded-[28px] bg-deep text-white shadow-[0_40px_90px_-40px_rgba(4,20,38,.6)]">
-              <SolutionArt solution={s} priority className="aspect-[4/3] w-full" />
+              <div className="relative">
+                <SolutionArt solution={s} priority className="aspect-[4/3] w-full" />
+                {campaign && (
+                  <div className="cmp-on absolute left-5 top-5">
+                    <PromoSeal percent={campaign.discountPercent} size="sm" />
+                  </div>
+                )}
+              </div>
               <div className="p-7 md:p-8">
                 <p className="font-display text-xl font-semibold">Fale com um especialista</p>
                 <p className="mt-2 text-white/65">Tire dúvidas e solicite seu orçamento sem compromisso.</p>
-                <WhatsAppLink location="solution_page" label={s.name} message={s.whatsappMessage} className="btn btn-primary mt-6 w-full">
+                {campaign && (
+                  <p className="cmp-on mt-3 text-sm font-semibold text-[var(--cmp-accent)]">
+                    Black Friday: {campaign.discountPercent}% OFF até {campaign.endsLabel}.
+                  </p>
+                )}
+                <WhatsAppLink location="solution_page" label={s.name} message={s.whatsappMessage} interest={s.name} className="btn btn-primary mt-6 w-full">
                   <WhatsAppGlyph className="size-5" />
-                  Solicitar orçamento
+                  <span className="cmp-off">Solicitar orçamento</span>
+                  {campaign && <span className="cmp-on">{campaign.texts.productCta}</span>}
                 </WhatsAppLink>
                 <Link href="/#orcamento" className="btn btn-ghost-dark mt-3 w-full">
                   Usar o assistente de orçamento

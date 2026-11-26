@@ -33,11 +33,13 @@ export function ContactDock() {
           className="group relative flex items-center gap-3 rounded-full bg-wa py-3 pl-3 pr-3 text-white shadow-[0_18px_40px_-12px_rgba(18,122,64,.7)] transition-all duration-500 hover:pr-5"
         >
           <span className="absolute inset-0 -z-10 rounded-full bg-wa/50 animate-pulse-ring" aria-hidden="true" />
+          <span className="cmp-on tag-off absolute -top-3 -left-2 z-10" aria-hidden="true">30% OFF</span>
           <span className="grid size-10 place-items-center">
             <WhatsAppGlyph className="size-7" />
           </span>
           <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold transition-all duration-500 group-hover:max-w-48">
-            Fale com um especialista
+            <span className="cmp-off">Fale com um especialista</span>
+            <span className="cmp-on">Aproveitar 30% OFF</span>
           </span>
         </WhatsAppLink>
       </div>
@@ -59,7 +61,8 @@ export function ContactDock() {
           </a>
           <WhatsAppLink location="mobile_bar" className="btn btn-wa min-h-12 flex-[1.4] whitespace-nowrap px-3 text-sm">
             <WhatsAppGlyph className="size-5" />
-            Falar no WhatsApp
+            <span className="cmp-off">Falar no WhatsApp</span>
+            <span className="cmp-on">Quero 30% OFF</span>
           </WhatsAppLink>
         </div>
       </div>
