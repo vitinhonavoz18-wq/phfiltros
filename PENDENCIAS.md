@@ -4,7 +4,8 @@ Todos os dados comerciais ficam em **`src/config/site.ts`** e **`src/config/cont
 
 ## Bloqueantes (sem isso, não publicar)
 - [ ] **Número oficial do WhatsApp** → `site.whatsapp` (ex.: `5571999998888`). Enquanto estiver vazio, os botões mostram o aviso "WhatsApp em configuração".
-- [ ] **Domínio oficial** → `NEXT_PUBLIC_SITE_URL` (usado em SEO, sitemap e canonical).
+- [x] Domínio: https://phfiltros.conectfly.com.br (publicado). Se migrar para domínio próprio, alterar `site.url` e `wrangler.jsonc`.
+- [ ] Cadastrar os secrets `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` no GitHub para o deploy automático (ver DEPLOY.md).
 - [ ] **Validar categorias de soluções e serviços** (`content.ts`, campo `confirmed`). Remover as que a PH Filtros não oferece.
 - [ ] **Validar opções do assistente de orçamento** (`src/components/sections/QuoteWizard.tsx`, listas `places` e `needs`).
 

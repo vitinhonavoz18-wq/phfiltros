@@ -1,0 +1,15 @@
+// Deploy alternativo (Worker autocontido). Gere antes com: npm run bundle
+{
+  "name": "phfiltros",
+  "main": ".bundle/worker.js",
+  "compatibility_date": "2026-11-01",
+  "rules": [
+    { "type": "Text", "globs": ["**/*.html", "**/*.txt", "**/*.xml", "**/*.webmanifest", "**/_next/**/*.css", "**/_next/**/*.js"], "fallthrough": false },
+    { "type": "Data", "globs": ["**/*.png", "**/*.webp", "**/*.woff2", "**/*.ico", "**/*.svg"], "fallthrough": false }
+  ],
+  "find_additional_modules": false,
+  "no_bundle": false,
+  "routes": [{ "pattern": "phfiltros.conectfly.com.br", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false
+}

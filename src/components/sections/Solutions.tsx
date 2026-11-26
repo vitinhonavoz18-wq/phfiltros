@@ -58,7 +58,7 @@ export function Solutions() {
                     aria-hidden
                     className={`absolute left-0 top-1/2 hidden h-10 w-[3px] -translate-y-1/2 rounded-full bg-gradient-to-b from-crystal to-brand transition-opacity lg:block ${selected ? "opacity-100" : "opacity-0"}`}
                   />
-                  <span className={`hidden font-display text-sm font-semibold tabular-nums lg:block ${selected ? "text-brand" : "text-ink/35"}`}>
+                  <span className={`hidden font-display text-sm font-semibold tabular-nums lg:block ${selected ? "text-brand-600" : "text-slate"}`}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span

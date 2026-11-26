@@ -21,7 +21,7 @@ export function HeroVisual() {
 
       {/* Gota da marca */}
       <div className="absolute left-1/2 top-0 w-[34%] -translate-x-1/2 animate-float">
-        <Image src="/brand/ph-drop-lg.webp" alt="" width={480} height={720} priority sizes="160px" className="h-auto w-full drop-shadow-[0_20px_50px_rgba(0,200,245,.35)]" />
+        <Image src="/brand/ph-drop-md.webp" alt="" width={320} height={480} priority sizes="160px" className="h-auto w-full drop-shadow-[0_20px_50px_rgba(0,200,245,.35)]" />
       </div>
 
       <svg viewBox="0 0 420 640" className="absolute inset-0 h-full w-full" fill="none">

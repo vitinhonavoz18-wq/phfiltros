@@ -30,4 +30,4 @@ Veja **PENDENCIAS.md** antes de publicar.
 - Respeita `prefers-reduced-motion`.
 
 ## Deploy
-Recomendado: Vercel (importar o repositório → definir variáveis de ambiente → Deploy).
+Publicado em https://phfiltros.conectfly.com.br (Cloudflare Workers). Veja **DEPLOY.md**.

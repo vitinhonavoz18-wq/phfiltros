@@ -265,7 +265,7 @@ export function FiltrationExperience() {
                         {i + 1}
                       </span>
                       <span>
-                        <span className={`block font-display text-lg font-semibold tracking-tight transition-colors lg:text-xl ${on ? "text-white" : "text-white/45"}`}>
+                        <span className={`block font-display text-lg font-semibold tracking-tight transition-colors lg:text-xl ${on ? "text-white" : "text-white/65"}`}>
                           {s.title}
                         </span>
                         <span

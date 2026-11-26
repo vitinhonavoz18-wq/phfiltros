@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { site, tracking } from "@/config/site";
 import { defaultDescription, defaultTitle, JsonLd, localBusinessJsonLd } from "@/lib/seo";
@@ -12,8 +12,9 @@ import { Tracking } from "@/components/tracking/Tracking";
 import { CookieConsent } from "@/components/tracking/CookieConsent";
 import { consentDefaultsScript } from "@/components/tracking/consent";
 
-const sora = Sora({ subsets: ["latin"], variable: "--font-sora", display: "swap", weight: ["400", "500", "600", "700"] });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+// Fontes hospedadas no próprio site (Sora e Manrope, licença OFL): sem dependência do Google no build ou no acesso.
+const sora = localFont({ src: "../fonts/sora-latin-wght-normal.woff2", variable: "--font-sora", display: "swap", weight: "100 800" });
+const manrope = localFont({ src: "../fonts/manrope-latin-wght-normal.woff2", variable: "--font-manrope", display: "swap", weight: "200 800" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

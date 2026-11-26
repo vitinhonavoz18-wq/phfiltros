@@ -17,7 +17,7 @@ export const site = {
   cnpj: "", // ⚠️ PENDENTE: CNPJ (opcional, exibido no rodapé se preenchido)
 
   /** Domínio oficial, sem barra no final. Usado em SEO, sitemap e canonical. */
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.phfiltros.com.br", // ⚠️ PENDENTE: confirmar domínio
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://phfiltros.conectfly.com.br",
 
   yearsOfExperience: 40,
   region: "Salvador e região",
